@@ -1,0 +1,74 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: rgba(128, 128, 128, 0.107);
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .searchComponent {
+        margin-top: 2.5rem;
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 930px) {
+    .searchBox {
+        width: 100%;
+        .searchComponent {
+            width: 70%;
+        }
+    }
+}
+
+.videosList {
+    display: flex;
+    flex-wrap: wrap;
+    .videos {
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        width: 300px;
+        margin: 2rem;
+        h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        p.viewCount {
+            font-size: 0.9rem;
+            margin-bottom: 0rem;
+        }
+        p {
+            margin-top: 0.5rem;
+            margin-right: 0.3rem;
+            align-self: center;
+            // overflow: hidden;
+        }
+        img {
+            border: 1px solid black;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    background-color: rgba(19, 17, 17, 0.922);
+    color: rgba(255, 255, 255, 0.892);
+}
