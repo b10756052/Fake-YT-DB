@@ -19,5 +19,17 @@ const loginValidation = (data) => {
   return schema.validate(data);
 };
 
+// 判斷收藏影片資料是否符合validation
+const collectionValidation = (data) => {
+  const schema = Joi.object({
+    title: Joi.string().min(6).max(1024).required(),
+    imgURL: Joi.string().min(6).max(1024).required(),
+    videoURL: Joi.string().min(6).max(1024).required(),
+    channelTitle: Joi.string().min(6).max(100).required(),
+  });
+  return schema.validate(data);
+};
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.collectionValidation = collectionValidation;
