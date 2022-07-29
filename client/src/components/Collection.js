@@ -6,8 +6,12 @@ const Collection = ({ currentUser, setCurrentUser }) => {
     setCurrentUser(authServices.getCurrentUser());
   }, []);
   return (
-    <div style={{ padding: "3rem" }}>
-      {!currentUser && <div>要先登入才能訪問此頁面</div>}
+    <div style={{ padding: "3rem", minHeight: "90.2vh" }}>
+      {!currentUser && (
+        <div>
+          <h1>要先登入才能訪問此頁面</h1>
+        </div>
+      )}
       {currentUser && <div>Collection</div>}
     </div>
   );

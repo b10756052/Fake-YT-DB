@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import Nav from "./components/Nav";
@@ -26,6 +26,9 @@ function App() {
   const [count, setCount] = useState(0);
 
   let [currentUser, setCurrentUser] = useState(null);
+  useEffect(() => {
+    setCurrentUser(authServices.getCurrentUser());
+  }, []);
 
   return (
     <div>

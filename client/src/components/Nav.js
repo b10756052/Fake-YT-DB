@@ -34,21 +34,6 @@ const Nav = ({ currentUser, setCurrentUser }) => {
                 Home
               </a>
             </li>
-            {!currentUser && (
-              <li class="nav-item">
-                <a class="nav-link" href="/register">
-                  Register
-                </a>
-              </li>
-            )}
-            {!currentUser && (
-              <li class="nav-item">
-                <a class="nav-link" href="/login">
-                  Login
-                </a>
-              </li>
-            )}
-
             {currentUser && (
               <li class="nav-item">
                 <a class="nav-link" href="/collection">
@@ -60,6 +45,20 @@ const Nav = ({ currentUser, setCurrentUser }) => {
               <li class="nav-item">
                 <a onClick={handleLogout} class="nav-link" href="#">
                   Logout
+                </a>
+              </li>
+            )}
+            {!currentUser && (
+              <li class="nav-item">
+                <a class="nav-link" href="/register">
+                  Register
+                </a>
+              </li>
+            )}
+            {!currentUser && (
+              <li class="nav-item">
+                <a class="nav-link" href="/login">
+                  Login
                 </a>
               </li>
             )}
