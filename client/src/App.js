@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
-import Search from "./components/Search";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import Login from "./components/Login";
 import "./styles/style.css";
+import Regsiter from "./components/Regsiter";
+import Collection from "./components/Collection";
+import authServices from "./services/auth.services";
 
 function App() {
   let [result, setResult] = useState(null);
@@ -21,28 +25,59 @@ function App() {
   // 沒意義的，只是怕觸發useEffect重複對API發送request
   const [count, setCount] = useState(0);
 
+  let [currentUser, setCurrentUser] = useState(null);
+
   return (
     <div>
-      <Nav />
-      <Search
-        API_KEY={API_KEY}
-        result={result}
-        setResult={setResult}
-        input={input}
-        setInput={setInput}
-        DisplayVideos={() => {
-          DisplayVideos(searchURL);
-        }}
-      />
-      <Homepage
-        API_KEY={API_KEY}
-        result={result}
-        setResult={setResult}
-        input={input}
-        setInput={setInput}
-        DisplayVideos={DisplayVideos}
-        count={count}
-      />
+      <Nav currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Homepage
+              API_KEY={API_KEY}
+              result={result}
+              setResult={setResult}
+              input={input}
+              setInput={setInput}
+              DisplayVideos={DisplayVideos}
+              count={count}
+              searchURL={searchURL}
+            />
+          }
+        />
+        <Route
+          path="/Fake-YT"
+          element={
+            <Homepage
+              API_KEY={API_KEY}
+              result={result}
+              setResult={setResult}
+              input={input}
+              setInput={setInput}
+              DisplayVideos={DisplayVideos}
+              count={count}
+              searchURL={searchURL}
+            />
+          }
+        />
+        <Route path="/register" element={<Regsiter />} />
+        <Route
+          path="/login"
+          element={
+            <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
+          }
+        />
+        <Route
+          path="/collection"
+          element={
+            <Collection
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
+      </Routes>
       <Footer />
     </div>
   );

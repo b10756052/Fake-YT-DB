@@ -7,6 +7,7 @@ const authRoute = require('./routes').auth;
 const collectionRoute = require('./routes').collection;
 const passport = require('passport');
 require('./config/passport')(passport);
+const cors = require("cors")
 
 // connect to DB
 mongoose.connect(process.env.DB_CONNECT, {
@@ -21,6 +22,7 @@ mongoose.connect(process.env.DB_CONNECT, {
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use('/api/user', authRoute);
 app.use('/api/collection', passport.authenticate('jwt', { session: false }), collectionRoute)
 
