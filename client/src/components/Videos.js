@@ -33,7 +33,11 @@ const Videos = ({ data }) => {
       })
       .catch((error) => {
         console.log(error);
-        alert("添加失敗");
+        if (error.response.data === "Unauthorized") {
+          alert("未登入狀態無法收藏");
+        } else {
+          alert(error);
+        }
       });
   };
   return (
