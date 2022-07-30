@@ -1,7 +1,7 @@
 import React from "react";
 import collectionServices from "../services/collection.services";
 
-const Videos = ({ data }) => {
+const Videos = ({ data, currentUser }) => {
   let videoURL = `https://www.youtube.com/watch?v=${data.id}`;
   let searchVideoURL = `https://www.youtube.com/watch?v=${data.id.videoId}`;
   const clickVideo = () => {
@@ -14,31 +14,28 @@ const Videos = ({ data }) => {
   const addCollection = (e) => {
     let savedURL;
     e.stopPropagation();
-
-    if (data.id.videoId) {
-      savedURL = searchVideoURL;
+    if (!currentUser) {
+      alert("未登入狀態無法收藏！");
     } else {
-      savedURL = videoURL;
-    }
-    collectionServices
-      .post(
-        data.snippet.channelTitle,
-        data.snippet.thumbnails.medium.url,
-        data.snippet.title,
-        savedURL
-      )
-      .then((videoExist) => {
-        console.log(videoExist);
-        if (videoExist) alert(videoExist.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response.data === "Unauthorized") {
-          alert("未登入狀態無法收藏");
-        } else {
+      if (data.id.videoId) {
+        savedURL = searchVideoURL;
+      } else {
+        savedURL = videoURL;
+      }
+      collectionServices
+        .post(
+          data.snippet.channelTitle,
+          data.snippet.thumbnails.medium.url,
+          data.snippet.title,
+          savedURL
+        )
+        .then((videoExist) => {
+          alert(videoExist.data);
+        })
+        .catch((error) => {
           alert(error);
-        }
-      });
+        });
+    }
   };
   return (
     <div onClick={clickVideo} className="videos card card-body">

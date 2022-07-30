@@ -46,6 +46,7 @@ function App() {
               DisplayVideos={DisplayVideos}
               count={count}
               searchURL={searchURL}
+              currentUser={currentUser}
             />
           }
         />

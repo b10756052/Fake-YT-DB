@@ -11,6 +11,7 @@ const Homepage = ({
   DisplayVideos,
   count,
   searchURL,
+  currentUser,
 }) => {
   const popularURL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=TW&key=${API_KEY}&maxResults=20`;
 
@@ -37,7 +38,7 @@ const Homepage = ({
       <div className="videosList">
         {result &&
           result.items.map((data) => {
-            return <Videos data={data} />;
+            return <Videos data={data} currentUser={currentUser} />;
           })}
       </div>
     </div>

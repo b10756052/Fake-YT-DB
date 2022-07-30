@@ -41,8 +41,8 @@ const Collection = ({ currentUser, setCurrentUser }) => {
     collectionServices
       .delete(e.currentTarget.parentElement.children[1].className)
       .then(() => {
-        alert("刪除成功！");
         window.location.reload();
+        alert("刪除成功！");
       })
       .catch((err) => {
         console.log(err);
