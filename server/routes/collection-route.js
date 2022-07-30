@@ -8,7 +8,8 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  Collection.find({})
+  Collection.find({ refUser: req.user._id })
+    .populate("refUser", ["username", "email"])
     .then((collection) => {
       res.send(collection);
     })
@@ -29,6 +30,7 @@ router.post("/", async (req, res) => {
     imgURL,
     videoURL,
     channelTitle,
+    refUser: req.user._id,
   });
 
   try {

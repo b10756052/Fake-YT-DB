@@ -18,6 +18,10 @@ const collectionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  refUser: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 module.exports = mongoose.model("Collection", collectionSchema);

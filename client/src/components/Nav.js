@@ -6,7 +6,7 @@ const Nav = ({ currentUser, setCurrentUser }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
     authServices.logout();
-    alert("登出成功！即將導向至首頁");
+    alert("登出成功！");
     setCurrentUser(null);
     navigate("/");
   };
