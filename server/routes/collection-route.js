@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// 添加收藏
 router.post("/", async (req, res) => {
   //check the validation of data
   const { error } = collectionValidation(req.body);
