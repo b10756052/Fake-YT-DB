@@ -1,10 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import authServices from "../services/auth.services";
 
-const Nav = () => {
+const Nav = ({ currentUser, setCurrentUser }) => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    authServices.logout();
+    alert("登出成功！");
+    setCurrentUser(null);
+    navigate("/");
+  };
+  const FakeYtPrank = () => {
+    alert("不要點我，我沒功能><");
+  };
   return (
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a onClick={FakeYtPrank} class="navbar-brand" href="#">
           Fake Youtube
         </a>
         <button
@@ -21,20 +33,38 @@ const Nav = () => {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+              <a class="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Register
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Login
-              </a>
-            </li>
+            {currentUser && (
+              <li class="nav-item">
+                <a class="nav-link" href="/collection">
+                  Collection
+                </a>
+              </li>
+            )}
+            {currentUser && (
+              <li class="nav-item">
+                <a onClick={handleLogout} class="nav-link" href="#">
+                  Logout
+                </a>
+              </li>
+            )}
+            {!currentUser && (
+              <li class="nav-item">
+                <a class="nav-link" href="/register">
+                  Register
+                </a>
+              </li>
+            )}
+            {!currentUser && (
+              <li class="nav-item">
+                <a class="nav-link" href="/login">
+                  Login
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
