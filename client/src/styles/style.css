@@ -85,6 +85,19 @@ body {
   border: 1px solid black;
 }
 
+@media only screen and (min-width: 1000px) {
+  .videosList {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .videosList .collectionVideos {
+    max-width: 20%;
+  }
+}
+
 .footer {
   display: -webkit-box;
   display: -ms-flexbox;

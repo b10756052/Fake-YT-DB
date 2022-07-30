@@ -64,6 +64,16 @@ body {
     }
 }
 
+@media only screen and (min-width: 1000px) {
+    .videosList {
+        display: flex;
+        flex-wrap: wrap;
+        .collectionVideos {
+            max-width: 20%;
+        }
+    }
+}
+
 .footer {
     display: flex;
     justify-content: center;

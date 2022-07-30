@@ -34,9 +34,14 @@ const Collection = ({ currentUser, setCurrentUser }) => {
   const clickVideo = () => {
     window.open(collection[0].videoURL);
   };
+  const deleteCollection = (e) => {
+    // 避免Event Bubbling
+    e.stopPropagation();
+    return alert("刪除成功！");
+  };
 
   return (
-    <div>
+    <div style={{ minHeight: "87.2vh" }}>
       {!currentUser && (
         <div style={{ padding: "3rem", minHeight: "90.2vh" }}>
           <h2>未登入狀態無法拜訪此頁面</h2>
@@ -47,8 +52,9 @@ const Collection = ({ currentUser, setCurrentUser }) => {
       )}
 
       {currentUser && collection == "" && (
-        <div style={{ padding: "3rem", minHeight: "87.2vh" }}>
+        <div style={{ padding: "3rem" }}>
           <h1>目前暫無收藏影片！</h1>
+          <br />
           <button onClick={goHome} className="btn btn-primary">
             前往收藏
           </button>
@@ -56,13 +62,22 @@ const Collection = ({ currentUser, setCurrentUser }) => {
       )}
 
       {currentUser && collection && collection.length != 0 && (
-        <div className="videosList">
+        <div className=" videosList">
           {collection.map((data) => {
             return (
-              <div onClick={clickVideo} className="videos card card-body">
+              <div
+                onClick={clickVideo}
+                className="videos collectionVideos card card-body"
+              >
                 <h5 className="card-title">{data.title}</h5>
                 <img src={data.imgURL} alt="影片縮圖" />
                 <p>《{data.channelTitle}》</p>
+                <button
+                  onClick={deleteCollection}
+                  class="btn btn-outline-dark btn-sm "
+                >
+                  刪除
+                </button>
               </div>
             );
           })}
