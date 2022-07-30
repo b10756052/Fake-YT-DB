@@ -1,4 +1,5 @@
 import React from "react";
+import collectionServices from "../services/collection.services";
 
 const Videos = ({ data }) => {
   let videoURL = `https://www.youtube.com/watch?v=${data.id}`;
@@ -10,6 +11,31 @@ const Videos = ({ data }) => {
       window.open(videoURL);
     }
   };
+  const addCollection = (e) => {
+    let savedURL;
+    e.stopPropagation();
+
+    if (data.id.videoId) {
+      savedURL = searchVideoURL;
+    } else {
+      savedURL = videoURL;
+    }
+    collectionServices
+      .post(
+        data.snippet.channelTitle,
+        data.snippet.thumbnails.medium.url,
+        data.snippet.title,
+        savedURL
+      )
+      .then((videoExist) => {
+        console.log(videoExist);
+        if (videoExist) alert(videoExist.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("添加失敗");
+      });
+  };
   return (
     <div onClick={clickVideo} className="videos card card-body">
       <h5 className="card-title">{data.snippet.title}</h5>
@@ -18,6 +44,9 @@ const Videos = ({ data }) => {
         <p className="viewCount">Views : {data.statistics.viewCount}</p>
       )}
       <p>《{data.snippet.channelTitle}》</p>
+      <button onClick={addCollection} class="btn btn-outline-dark btn-sm ">
+        收藏
+      </button>
     </div>
   );
 };

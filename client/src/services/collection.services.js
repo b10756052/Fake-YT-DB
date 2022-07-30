@@ -15,7 +15,37 @@ class CollectionService {
       },
     });
   }
-  post() {}
+  post(channelTitle, imgURL, title, videoURL) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+    return axios.post(
+      API_URL,
+      { channelTitle, imgURL, title, videoURL },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+  }
+  delete(_id) {
+    let token;
+    if (localStorage.getItem("user")) {
+      token = JSON.parse(localStorage.getItem("user")).token;
+    } else {
+      token = "";
+    }
+
+    return axios.delete(API_URL + "/" + _id, {
+      headers: {
+        Authorization: token,
+      },
+    });
+  }
 }
 
 export default new CollectionService();

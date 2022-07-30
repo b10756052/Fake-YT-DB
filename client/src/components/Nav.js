@@ -10,10 +10,13 @@ const Nav = ({ currentUser, setCurrentUser }) => {
     setCurrentUser(null);
     navigate("/");
   };
+  const FakeYtPrank = () => {
+    alert("不要點我，我沒功能><");
+  };
   return (
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a onClick={FakeYtPrank} class="navbar-brand" href="#">
           Fake Youtube
         </a>
         <button

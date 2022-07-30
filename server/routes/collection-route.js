@@ -25,6 +25,10 @@ router.post("/", async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   let { title, imgURL, videoURL, channelTitle } = req.body;
+  // 確認
+  let videoExist = await Collection.findOne({ videoURL });
+  if (videoExist) return res.send("該筆資料已存在");
+
   let newCollection = new Collection({
     title,
     imgURL,
@@ -35,15 +39,16 @@ router.post("/", async (req, res) => {
 
   try {
     await newCollection.save();
-    res.status(200).send("New collection has been saved.");
+    res.status(200).send("添加至收藏！");
   } catch (err) {
     console.log(err);
-    res.status(400).send("Cannot save collection.");
+    res.status(400).send("添加失敗");
   }
 });
 
 router.delete("/:_id", async (req, res) => {
   let { _id } = req.params;
+
   let collection = await Collection.findOne({ _id });
   if (!collection) {
     res.status(404);

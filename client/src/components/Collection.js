@@ -31,13 +31,22 @@ const Collection = ({ currentUser, setCurrentUser }) => {
         });
     }
   }, []);
-  const clickVideo = () => {
-    window.open(collection[0].videoURL);
+  const clickVideo = (e) => {
+    window.open(e.currentTarget.children[2].className);
   };
   const deleteCollection = (e) => {
     // 避免Event Bubbling
     e.stopPropagation();
-    return alert("刪除成功！");
+    console.log(e.currentTarget.parentElement.children[1].className);
+    collectionServices
+      .delete(e.currentTarget.parentElement.children[1].className)
+      .then(() => {
+        alert("刪除成功！");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -70,8 +79,8 @@ const Collection = ({ currentUser, setCurrentUser }) => {
                 className="videos collectionVideos card card-body"
               >
                 <h5 className="card-title">{data.title}</h5>
-                <img src={data.imgURL} alt="影片縮圖" />
-                <p>《{data.channelTitle}》</p>
+                <img className={data._id} src={data.imgURL} alt="影片縮圖" />
+                <p className={data.videoURL}>《{data.channelTitle}》</p>
                 <button
                   onClick={deleteCollection}
                   class="btn btn-outline-dark btn-sm "
