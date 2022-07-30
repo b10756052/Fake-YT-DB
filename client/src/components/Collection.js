@@ -50,7 +50,7 @@ const Collection = ({ currentUser, setCurrentUser }) => {
   };
 
   return (
-    <div style={{ minHeight: "87.2vh" }}>
+    <div style={{ minHeight: "90.2vh" }}>
       {!currentUser && (
         <div style={{ padding: "3rem", minHeight: "90.2vh" }}>
           <h2>未登入狀態無法拜訪此頁面</h2>
@@ -71,7 +71,7 @@ const Collection = ({ currentUser, setCurrentUser }) => {
       )}
 
       {currentUser && collection && collection.length != 0 && (
-        <div className=" videosList">
+        <div className=" videosList collectionVideosList">
           {collection.map((data) => {
             return (
               <div

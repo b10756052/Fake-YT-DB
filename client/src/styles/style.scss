@@ -64,11 +64,15 @@ body {
     }
 }
 
-@media only screen and (min-width: 1000px) {
-    .videosList {
+@media only screen and (min-width: 1200px) {
+    .collectionVideosList {
         display: flex;
         flex-wrap: wrap;
+        justify-content: start;
+        margin-left: 2.5rem;
+
         .collectionVideos {
+            flex-grow: 0;
             max-width: 20%;
         }
     }
