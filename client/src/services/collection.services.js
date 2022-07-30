@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:8080/api/collection";
+const API_URL = "https://fake-yt.herokuapp.com/api/collection";
 
 class CollectionService {
   get() {
