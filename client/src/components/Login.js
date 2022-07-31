@@ -19,11 +19,11 @@ const Login = ({ currentUser, setCurrentUser }) => {
     authServices
       .login(email, password)
       .then((response) => {
+        alert("登入成功，即將導向影片收藏頁面");
         console.log(response.data);
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
-        alert("登入成功，即將導向影片收藏頁面");
         setCurrentUser(authServices.getCurrentUser());
         navigate("/collection");
       })
