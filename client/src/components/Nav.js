@@ -2,12 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import authServices from "../services/auth.services";
 
-const Nav = ({ currentUser, setCurrentUser }) => {
+const Nav = ({
+  currentUser,
+  setCurrentUser,
+  CollectionCount,
+  setCollectionCount,
+}) => {
   const navigate = useNavigate();
   const handleLogout = () => {
     authServices.logout();
     alert("登出成功！");
     setCurrentUser(null);
+    setCollectionCount(0);
     navigate("/");
   };
   const FakeYtPrank = () => {

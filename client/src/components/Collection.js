@@ -3,7 +3,12 @@ import authServices from "../services/auth.services";
 import { useNavigate } from "react-router-dom";
 import collectionServices from "../services/collection.services";
 
-const Collection = ({ currentUser, setCurrentUser }) => {
+const Collection = ({
+  currentUser,
+  setCurrentUser,
+  CollectionCount,
+  setCollectionCount,
+}) => {
   useEffect(() => {
     setCurrentUser(authServices.getCurrentUser());
   }, []);
@@ -18,19 +23,17 @@ const Collection = ({ currentUser, setCurrentUser }) => {
 
   let [collection, setCollection] = useState(null);
   useEffect(() => {
-    if (collection === null) {
-      console.log("抓collection裡面影片資料");
-      collectionServices
-        .get()
-        .then((data) => {
-          console.log("資料長這樣", data.data);
-          setCollection(data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
+    console.log("抓collection裡面影片資料");
+    collectionServices
+      .get()
+      .then((data) => {
+        console.log("資料長這樣", data.data);
+        setCollection(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [CollectionCount]);
   const clickVideo = (e) => {
     window.open(e.currentTarget.children[2].className);
   };
@@ -41,8 +44,8 @@ const Collection = ({ currentUser, setCurrentUser }) => {
     collectionServices
       .delete(e.currentTarget.parentElement.children[1].className)
       .then(() => {
-        window.location.reload();
         alert("刪除成功！");
+        setCollectionCount(CollectionCount + 1);
       })
       .catch((err) => {
         console.log(err);

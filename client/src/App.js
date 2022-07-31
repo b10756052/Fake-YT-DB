@@ -10,6 +10,9 @@ import Collection from "./components/Collection";
 import authServices from "./services/auth.services";
 
 function App() {
+  // 傳去collection幫助刪除collection後利用useEffect重整用的
+  let [CollectionCount, setCollectionCount] = useState(0);
+
   let [result, setResult] = useState(null);
   let [input, setInput] = useState("");
   const API_KEY = "AIzaSyDUpiUqt6l0qSiGyg2Km-4TsT-LhU7cSlk";
@@ -32,7 +35,12 @@ function App() {
 
   return (
     <div>
-      <Nav currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Nav
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        CollectionCount={CollectionCount}
+        setCollectionCount={setCollectionCount}
+      />
       <Routes>
         <Route
           path="/"
@@ -78,6 +86,8 @@ function App() {
             <Collection
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
+              CollectionCount={CollectionCount}
+              setCollectionCount={setCollectionCount}
             />
           }
         />
