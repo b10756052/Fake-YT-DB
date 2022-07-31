@@ -11,5 +11,5 @@
   - 用Axios對後端API發送Request
     (註冊、登入、對DB的影片收藏表單CRUD)
   - 用Fetch對YT API發送Request
-    (在首頁顯示YT台灣地區的發燒影片Top20)
+    (在首頁顯示YT台灣地區的發燒影片)
     (搜索功能為透過API從YT抓搜尋結果回來顯示)
