@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 
   let { title, imgURL, videoURL, channelTitle } = req.body;
   // 確認
-  let videoExist = await Collection.findOne({ videoURL });
+  let videoExist = await Collection.findOne({ videoURL, refUser: req.user._id });
   if (videoExist) return res.send("該筆資料已存在");
 
   let newCollection = new Collection({
@@ -58,7 +58,7 @@ router.delete("/:_id", async (req, res) => {
       message: "Collection not found.",
     });
   } else {
-    Collection.deleteOne({ _id })
+    Collection.deleteOne({ _id, refUser: req.user._id })
       .then(() => {
         res.send("Collection deleted.");
       })
