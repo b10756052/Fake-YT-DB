@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_URL = "https://fake-yt.herokuapp.com/api/user";
+const API_URL = "https://fake-yt-79b876f4cb2d.herokuapp.com/api/user";
+// const API_URL = "https://fake-yt.herokuapp.com/api/user";
 
 class AuthService {
   login(email, password) {
